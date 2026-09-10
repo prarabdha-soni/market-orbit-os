@@ -12,7 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppCampaignsRouteImport } from './routes/app.campaigns'
 import { Route as AppMarketsRouteImport } from './routes/app.markets'
+import { Route as AppNewExpansionRouteImport } from './routes/app.new-expansion'
+import { Route as AppOpportunitiesRouteImport } from './routes/app.opportunities'
+import { Route as AppPlanRouteImport } from './routes/app.plan'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,36 +33,92 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCampaignsRoute = AppCampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppMarketsRoute = AppMarketsRouteImport.update({
   id: '/markets',
   path: '/markets',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNewExpansionRoute = AppNewExpansionRouteImport.update({
+  id: '/new-expansion',
+  path: '/new-expansion',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOpportunitiesRoute = AppOpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPlanRoute = AppPlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
   getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/campaigns': typeof AppCampaignsRoute
   '/app/markets': typeof AppMarketsRoute
+  '/app/new-expansion': typeof AppNewExpansionRoute
+  '/app/opportunities': typeof AppOpportunitiesRoute
+  '/app/plan': typeof AppPlanRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/campaigns': typeof AppCampaignsRoute
   '/app/markets': typeof AppMarketsRoute
+  '/app/new-expansion': typeof AppNewExpansionRoute
+  '/app/opportunities': typeof AppOpportunitiesRoute
+  '/app/plan': typeof AppPlanRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/campaigns': typeof AppCampaignsRoute
   '/app/markets': typeof AppMarketsRoute
+  '/app/new-expansion': typeof AppNewExpansionRoute
+  '/app/opportunities': typeof AppOpportunitiesRoute
+  '/app/plan': typeof AppPlanRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/markets' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/campaigns'
+    | '/app/markets'
+    | '/app/new-expansion'
+    | '/app/opportunities'
+    | '/app/plan'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/markets' | '/app'
-  id: '__root__' | '/' | '/app' | '/app/markets' | '/app/'
+  to:
+    | '/'
+    | '/app/campaigns'
+    | '/app/markets'
+    | '/app/new-expansion'
+    | '/app/opportunities'
+    | '/app/plan'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/campaigns'
+    | '/app/markets'
+    | '/app/new-expansion'
+    | '/app/opportunities'
+    | '/app/plan'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -89,6 +149,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/campaigns': {
+      id: '/app/campaigns'
+      path: '/campaigns'
+      fullPath: '/app/campaigns'
+      preLoaderRoute: typeof AppCampaignsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/markets': {
       id: '/app/markets'
       path: '/markets'
@@ -96,16 +163,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMarketsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/new-expansion': {
+      id: '/app/new-expansion'
+      path: '/new-expansion'
+      fullPath: '/app/new-expansion'
+      preLoaderRoute: typeof AppNewExpansionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/opportunities': {
+      id: '/app/opportunities'
+      path: '/opportunities'
+      fullPath: '/app/opportunities'
+      preLoaderRoute: typeof AppOpportunitiesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/plan': {
+      id: '/app/plan'
+      path: '/plan'
+      fullPath: '/app/plan'
+      preLoaderRoute: typeof AppPlanRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppCampaignsRoute: typeof AppCampaignsRoute
   AppMarketsRoute: typeof AppMarketsRoute
+  AppNewExpansionRoute: typeof AppNewExpansionRoute
+  AppOpportunitiesRoute: typeof AppOpportunitiesRoute
+  AppPlanRoute: typeof AppPlanRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCampaignsRoute: AppCampaignsRoute,
   AppMarketsRoute: AppMarketsRoute,
+  AppNewExpansionRoute: AppNewExpansionRoute,
+  AppOpportunitiesRoute: AppOpportunitiesRoute,
+  AppPlanRoute: AppPlanRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
