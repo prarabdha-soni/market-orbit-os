@@ -12,11 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppCampaignsRouteImport } from './routes/app.campaigns'
+import { Route as AppKnowledgeRouteImport } from './routes/app.knowledge'
 import { Route as AppMarketsRouteImport } from './routes/app.markets'
 import { Route as AppNewExpansionRouteImport } from './routes/app.new-expansion'
 import { Route as AppOpportunitiesRouteImport } from './routes/app.opportunities'
+import { Route as AppOrdersRouteImport } from './routes/app.orders'
 import { Route as AppPlanRouteImport } from './routes/app.plan'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppAgentsAgentIdRouteImport } from './routes/app.agents.$agentId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,9 +38,19 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCampaignsRoute = AppCampaignsRouteImport.update({
   id: '/campaigns',
   path: '/campaigns',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
   getParentRoute: () => AppRoute,
 } as any)
 const AppMarketsRoute = AppMarketsRouteImport.update({
@@ -53,72 +68,117 @@ const AppOpportunitiesRoute = AppOpportunitiesRouteImport.update({
   path: '/opportunities',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOrdersRoute = AppOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPlanRoute = AppPlanRouteImport.update({
   id: '/plan',
   path: '/plan',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAgentsAgentIdRoute = AppAgentsAgentIdRouteImport.update({
+  id: '/agents/$agentId',
+  path: '/agents/$agentId',
   getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/campaigns': typeof AppCampaignsRoute
+  '/app/knowledge': typeof AppKnowledgeRoute
   '/app/markets': typeof AppMarketsRoute
   '/app/new-expansion': typeof AppNewExpansionRoute
   '/app/opportunities': typeof AppOpportunitiesRoute
+  '/app/orders': typeof AppOrdersRoute
   '/app/plan': typeof AppPlanRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
+  '/app/agents/$agentId': typeof AppAgentsAgentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/campaigns': typeof AppCampaignsRoute
+  '/app/knowledge': typeof AppKnowledgeRoute
   '/app/markets': typeof AppMarketsRoute
   '/app/new-expansion': typeof AppNewExpansionRoute
   '/app/opportunities': typeof AppOpportunitiesRoute
+  '/app/orders': typeof AppOrdersRoute
   '/app/plan': typeof AppPlanRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app': typeof AppIndexRoute
+  '/app/agents/$agentId': typeof AppAgentsAgentIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/campaigns': typeof AppCampaignsRoute
+  '/app/knowledge': typeof AppKnowledgeRoute
   '/app/markets': typeof AppMarketsRoute
   '/app/new-expansion': typeof AppNewExpansionRoute
   '/app/opportunities': typeof AppOpportunitiesRoute
+  '/app/orders': typeof AppOrdersRoute
   '/app/plan': typeof AppPlanRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
+  '/app/agents/$agentId': typeof AppAgentsAgentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/app'
+    | '/app/analytics'
     | '/app/campaigns'
+    | '/app/knowledge'
     | '/app/markets'
     | '/app/new-expansion'
     | '/app/opportunities'
+    | '/app/orders'
     | '/app/plan'
+    | '/app/settings'
     | '/app/'
+    | '/app/agents/$agentId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/analytics'
     | '/app/campaigns'
+    | '/app/knowledge'
     | '/app/markets'
     | '/app/new-expansion'
     | '/app/opportunities'
+    | '/app/orders'
     | '/app/plan'
+    | '/app/settings'
     | '/app'
+    | '/app/agents/$agentId'
   id:
     | '__root__'
     | '/'
     | '/app'
+    | '/app/analytics'
     | '/app/campaigns'
+    | '/app/knowledge'
     | '/app/markets'
     | '/app/new-expansion'
     | '/app/opportunities'
+    | '/app/orders'
     | '/app/plan'
+    | '/app/settings'
     | '/app/'
+    | '/app/agents/$agentId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -149,11 +209,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/campaigns': {
       id: '/app/campaigns'
       path: '/campaigns'
       fullPath: '/app/campaigns'
       preLoaderRoute: typeof AppCampaignsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/knowledge': {
+      id: '/app/knowledge'
+      path: '/knowledge'
+      fullPath: '/app/knowledge'
+      preLoaderRoute: typeof AppKnowledgeRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/markets': {
@@ -177,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOpportunitiesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/orders': {
+      id: '/app/orders'
+      path: '/orders'
+      fullPath: '/app/orders'
+      preLoaderRoute: typeof AppOrdersRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/plan': {
       id: '/app/plan'
       path: '/plan'
@@ -184,25 +265,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppPlanRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/agents/$agentId': {
+      id: '/app/agents/$agentId'
+      path: '/agents/$agentId'
+      fullPath: '/app/agents/$agentId'
+      preLoaderRoute: typeof AppAgentsAgentIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppCampaignsRoute: typeof AppCampaignsRoute
+  AppKnowledgeRoute: typeof AppKnowledgeRoute
   AppMarketsRoute: typeof AppMarketsRoute
   AppNewExpansionRoute: typeof AppNewExpansionRoute
   AppOpportunitiesRoute: typeof AppOpportunitiesRoute
+  AppOrdersRoute: typeof AppOrdersRoute
   AppPlanRoute: typeof AppPlanRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppAgentsAgentIdRoute: typeof AppAgentsAgentIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
   AppCampaignsRoute: AppCampaignsRoute,
+  AppKnowledgeRoute: AppKnowledgeRoute,
   AppMarketsRoute: AppMarketsRoute,
   AppNewExpansionRoute: AppNewExpansionRoute,
   AppOpportunitiesRoute: AppOpportunitiesRoute,
+  AppOrdersRoute: AppOrdersRoute,
   AppPlanRoute: AppPlanRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppAgentsAgentIdRoute: AppAgentsAgentIdRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
